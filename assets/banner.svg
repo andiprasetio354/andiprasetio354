@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#007CF0"/>
+      <stop offset="1" stop-color="#00DFD8"/>
+    </linearGradient>
+    <style>
+      .bg { fill: url(#g); }
+      .wave { fill: rgba(255,255,255,0.08); }
+      .title { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size:48px; fill: #FFFFFF; font-weight:700; }
+      .subtitle { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size:20px; fill: #E6FBFF; opacity:0.95; }
+    </style>
+  </defs>
+  <rect width="1280" height="320" class="bg" rx="8"/>
+  <g transform="translate(40,40)">
+    <text x="0" y="70" class="title">Andi Prasetio Gupuh</text>
+    <text x="0" y="110" class="subtitle">Web Dev — frontend, performance & UX</text>
+  </g>
+  <path class="wave" d="M0 260 C 200 220 400 300 640 260 C 880 220 1080 320 1280 280 L1280 320 L0 320 Z"/>
+</svg>
