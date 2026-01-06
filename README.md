@@ -17,7 +17,7 @@ Saya tertarik membuat antarmuka yang rapi, performa web yang baik, dan pengalama
 - 🌱 Sedang belajar: optimasi performa, accessibility, dan design systems
 - 👯 Mau berkolaborasi di: project React/Next.js, UI component libraries, dan tooling dev
 - 💬 Tanyakan tentang: HTML, CSS, JavaScript, React, dan best practices pengembangan web
-- 📫 Hubungi: email@example.com (ganti dengan email Anda) — LinkedIn: https://www.linkedin.com/in/username
+- 📫 Hubungi: andiprasetio354@gmail.com  — LinkedIn: https://www.linkedin.com/in/andi prasetio gupuh
 
 ## 🔧 Tech & Tools
 - Bahasa: JavaScript, TypeScript, HTML, CSS
@@ -28,8 +28,6 @@ Saya tertarik membuat antarmuka yang rapi, performa web yang baik, dan pengalama
 - [project-utama](https://github.com/andiprasetio354/project-utama) — Deskripsi singkat project utama Anda.
 - [portfolio](https://github.com/andiprasetio354/portfolio) — Portofolio dan showcase proyek.
 - [tool-utility](https://github.com/andiprasetio354/tool-utility) — Utility kecil untuk developer (CLI / lib).
-
-(Pastikan ganti link & deskripsi di atas sesuai repo Anda. Kalau mau, kirim 3 link + deskripsi dan saya isi langsung.)
 
 ## ⭐ Highlight & Badges
 <p align="left">
