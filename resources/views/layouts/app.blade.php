@@ -35,11 +35,11 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @if(Route::is('home', 'about', 'projects', 'contact', 'resume'))
-                <x-public-header />
-            @else
+            @auth
                 @include('layouts.navigation')
-            @endif
+            @else
+                <x-public-header />
+            @endauth
 
             <!-- Page Heading -->
             @isset($header)
