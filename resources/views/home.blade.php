@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Home')
+@section('title','Home - Web Developer Portfolio')
+@section('description','Welcome to my portfolio. Saya adalah web developer dengan spesialisasi Laravel, PHP, dan JavaScript modern.')
+@section('keywords','web developer, portfolio, laravel, php, javascript')
 
 @section('content')
   <section class="hero-gradient text-white py-20">

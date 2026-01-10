@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title','About')
+@section('title','About Me - Web Developer')
+@section('description','Belajar lebih lanjut tentang saya: pengalaman, skill, dan passion dalam pengembangan web.')
+@section('keywords','web developer, laravel, pengalaman, about')
 
 @section('content')
   <div class="max-w-4xl mx-auto px-6 py-12">

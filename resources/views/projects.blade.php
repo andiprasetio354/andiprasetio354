@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Projects')
+@section('title','Projects - My Portfolio')
+@section('description','Lihat proyek-proyek saya yang menampilkan keahlian dalam Laravel, PHP, dan teknologi web modern.')
+@section('keywords','portfolio, projects, web development, laravel, javascript')
 
 @section('content')
   <div class="max-w-6xl mx-auto px-6 py-12">

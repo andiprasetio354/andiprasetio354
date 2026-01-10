@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +13,9 @@ Route::get('/', function () {
 Route::view('/about','about');
 Route::view('/projects','projects');
 Route::view('/resume','resume');
+
+// SEO routes
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Public contact form routes
 Route::get('/contact', [ContactController::class, 'showForm']);

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Contact')
+@section('title','Contact Me - Web Developer')
+@section('description','Hubungi saya untuk pertanyaan, project discussion, atau kolaborasi.')
+@section('keywords','contact, web developer, collaboration, inquiry')
 
 @section('content')
   <div class="max-w-2xl mx-auto px-6 py-12">

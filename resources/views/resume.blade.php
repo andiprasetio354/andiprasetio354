@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Resume / CV')
+@section('title','Resume / CV - Web Developer')
+@section('description','Download atau lihat CV profesional saya. Pengalaman kerja, skill, dan sertifikasi.')
+@section('keywords','resume, cv, web developer, experience, skills')
 
 @section('content')
   <div class="max-w-4xl mx-auto px-6 py-12">
