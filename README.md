@@ -5,33 +5,36 @@ A professional, responsive portfolio website built with Laravel 12, Tailwind CSS
 ## Features
 
 ✨ **Core Features**
-- Responsive design with Tailwind CSS
-- Home, About, Projects, Resume, and Contact pages
-- Admin authentication (Laravel Breeze)
-- Project management CRUD with image upload
-- Contact form with message storage
-- Professional resume/CV page with print & download options
-- SEO optimized (meta tags, Open Graph, sitemap.xml, robots.txt)
+
+-   Responsive design with Tailwind CSS
+-   Home, About, Projects, Resume, and Contact pages
+-   Admin authentication (Laravel Breeze)
+-   Project management CRUD with image upload
+-   Contact form with message storage
+-   Professional resume/CV page with print & download options
+-   SEO optimized (meta tags, Open Graph, sitemap.xml, robots.txt)
 
 ## Tech Stack
 
-- **Backend**: PHP 8.2+, Laravel 12, SQLite/MySQL
-- **Frontend**: Tailwind CSS, Blade templating
-- **Authentication**: Laravel Breeze
-- **Database**: SQLite (default) or MySQL
-- **Build Tools**: Vite, NPM
+-   **Backend**: PHP 8.2+, Laravel 12, SQLite/MySQL
+-   **Frontend**: Tailwind CSS, Blade templating
+-   **Authentication**: Laravel Breeze
+-   **Database**: SQLite (default) or MySQL
+-   **Build Tools**: Vite, NPM
 
 ## Local Development Setup
 
 ### Prerequisites
-- PHP 8.2+ with extensions: sqlite3, pdo_sqlite, curl, mbstring, xml
-- Composer
-- Node.js 20+ (for asset compilation)
-- SQLite or MySQL
+
+-   PHP 8.2+ with extensions: sqlite3, pdo_sqlite, curl, mbstring, xml
+-   Composer
+-   Node.js 20+ (for asset compilation)
+-   SQLite or MySQL
 
 ### Installation Steps
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/andiprasetio354/andiprasetio354.git
 cd andiprasetio354
@@ -39,28 +42,33 @@ git checkout portfolio-dev  # Switch to portfolio-dev branch
 ```
 
 2. **Install PHP dependencies**
+
 ```bash
 composer install
 ```
 
 3. **Install Node dependencies**
+
 ```bash
 npm install
 ```
 
 4. **Configure environment**
+
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
 5. **Setup database (SQLite default)**
+
 ```bash
 touch database/database.sqlite
 php artisan migrate
 ```
 
 Or for MySQL, update `.env`:
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -71,11 +79,13 @@ DB_PASSWORD=
 ```
 
 6. **Create storage symlink**
+
 ```bash
 php artisan storage:link
 ```
 
 7. **Run development server**
+
 ```bash
 php artisan serve
 ```
@@ -85,12 +95,14 @@ Visit `http://localhost:8000` in your browser.
 ## Development
 
 ### Compile Assets
+
 ```bash
 npm run dev   # Development with watch mode
 npm run build # Production build
 ```
 
 ### Create Test User (Admin)
+
 ```bash
 php artisan tinker
 User::create([
@@ -110,6 +122,7 @@ Then login at `/login`
 **Prerequisites**: SSH access, PHP 8.2+, Composer, Git
 
 **Steps**:
+
 ```bash
 # SSH into server
 ssh user@your-domain.com
@@ -148,58 +161,60 @@ php artisan view:cache
 #### Option A: DigitalOcean App Platform (Recommended)
 
 1. **Prepare your code**
-   - Push to GitHub on `portfolio-dev` branch
-   - Create `.do/app.yaml`:
+    - Push to GitHub on `portfolio-dev` branch
+    - Create `.do/app.yaml`:
+
 ```yaml
 name: portfolio
 services:
-- name: web
-  github:
-    repo: andiprasetio354/andiprasetio354
-    branch: portfolio-dev
-  build_command: npm ci && npm run build && composer install --no-dev
-  run_command: php -S 0.0.0.0:8080 -t public
-  envs:
-  - key: APP_ENV
-    value: production
-  - key: APP_KEY
-    scope: RUN_AND_BUILD_TIME
-    value: ${APP_KEY}
-  http_port: 8080
+    - name: web
+      github:
+          repo: andiprasetio354/andiprasetio354
+          branch: portfolio-dev
+      build_command: npm ci && npm run build && composer install --no-dev
+      run_command: php -S 0.0.0.0:8080 -t public
+      envs:
+          - key: APP_ENV
+            value: production
+          - key: APP_KEY
+            scope: RUN_AND_BUILD_TIME
+            value: ${APP_KEY}
+      http_port: 8080
 databases:
-- name: db
-  engine: MYSQL
-  version: "8"
+    - name: db
+      engine: MYSQL
+      version: "8"
 envs:
-- key: DB_CONNECTION
-  value: mysql
-- key: DB_HOST
-  value: ${db.MYSQL_HOST}
-- key: DB_PORT
-  value: "3306"
-- key: DB_DATABASE
-  value: portfolio
-- key: DB_USERNAME
-  value: ${db.MYSQL_USER}
-- key: DB_PASSWORD
-  scope: RUN_AND_BUILD_TIME
-  value: ${db.MYSQL_PASSWORD}
-- key: APP_DEBUG
-  value: "false"
+    - key: DB_CONNECTION
+      value: mysql
+    - key: DB_HOST
+      value: ${db.MYSQL_HOST}
+    - key: DB_PORT
+      value: "3306"
+    - key: DB_DATABASE
+      value: portfolio
+    - key: DB_USERNAME
+      value: ${db.MYSQL_USER}
+    - key: DB_PASSWORD
+      scope: RUN_AND_BUILD_TIME
+      value: ${db.MYSQL_PASSWORD}
+    - key: APP_DEBUG
+      value: "false"
 ```
 
 2. **Create App on DigitalOcean**
-   - Go to App Platform → Create App
-   - Connect GitHub repo → Select `portfolio-dev` branch
-   - Use YAML from above or configure via UI
-   - Set environment variables (APP_KEY, mail config)
-   - Deploy
+    - Go to App Platform → Create App
+    - Connect GitHub repo → Select `portfolio-dev` branch
+    - Use YAML from above or configure via UI
+    - Set environment variables (APP_KEY, mail config)
+    - Deploy
 
 #### Option B: DigitalOcean Droplet (Ubuntu 22.04)
 
 1. **Create Droplet** (2GB RAM minimum)
 
 2. **SSH and setup server**
+
 ```bash
 ssh root@your_droplet_ip
 
@@ -215,6 +230,7 @@ useradd -m -s /bin/bash app
 ```
 
 3. **Deploy application**
+
 ```bash
 su - app
 cd /home/app
@@ -246,11 +262,13 @@ php artisan route:cache
 ```
 
 4. **Configure Nginx**
+
 ```bash
 sudo nano /etc/nginx/sites-available/portfolio
 ```
 
 Add:
+
 ```nginx
 server {
     listen 80;
@@ -284,12 +302,14 @@ sudo systemctl restart nginx
 ```
 
 5. **Setup SSL (Let's Encrypt)**
+
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
 sudo certbot certonly --nginx -d your-domain.com -d www.your-domain.com
 ```
 
 Update Nginx config to use SSL, then:
+
 ```bash
 sudo systemctl restart nginx
 ```
@@ -299,22 +319,26 @@ sudo systemctl restart nginx
 1. **Create Server** on Forge dashboard (DigitalOcean, AWS, Linode, etc.)
 
 2. **Connect GitHub**
-   - Go to Apps → Create App
-   - Select repo: `andiprasetio354/andiprasetio354`
-   - Branch: `portfolio-dev`
+
+    - Go to Apps → Create App
+    - Select repo: `andiprasetio354/andiprasetio354`
+    - Branch: `portfolio-dev`
 
 3. **Environment Variables**
-   - APP_ENV: `production`
-   - APP_DEBUG: `false`
-   - DB_* (configure database)
-   - MAIL_* (configure mail)
+
+    - APP_ENV: `production`
+    - APP_DEBUG: `false`
+    - DB\_\* (configure database)
+    - MAIL\_\* (configure mail)
 
 4. **Deploy**
-   - Forge auto-provisions PHP, Nginx, MySQL, SSL
-   - Click "Deploy Now"
-   - Monitor deployment logs
+
+    - Forge auto-provisions PHP, Nginx, MySQL, SSL
+    - Click "Deploy Now"
+    - Monitor deployment logs
 
 5. **Post-Deploy**
+
 ```bash
 # SSH into server via Forge dashboard
 php artisan storage:link
@@ -392,16 +416,19 @@ MAIL_FROM_ADDRESS=your-email@gmail.com
 ## Database Schema
 
 ### Projects Table
+
 ```
 id, title, slug, description, tech_stack, image, link, featured, created_at, updated_at
 ```
 
 ### Contact Messages Table
+
 ```
 id, name, email, subject, message, status, created_at, updated_at
 ```
 
 ### Users Table (Breeze)
+
 ```
 id, name, email, email_verified_at, password, remember_token, created_at, updated_at
 ```
@@ -409,42 +436,48 @@ id, name, email, email_verified_at, password, remember_token, created_at, update
 ## Admin Panel
 
 **Login**: `/login`
-- Email: `admin@example.com`
-- Password: (set during setup)
+
+-   Email: `admin@example.com`
+-   Password: (set during setup)
 
 **Admin Routes**:
-- `/admin/projects` — Manage projects (CRUD)
-- `/admin/contact` — View contact messages
+
+-   `/admin/projects` — Manage projects (CRUD)
+-   `/admin/contact` — View contact messages
 
 ## Performance Tips
 
-- Run `php artisan optimize:clear` before deployment
-- Use CDN for static assets (images, CSS, JS)
-- Enable caching: `php artisan config:cache route:cache`
-- Setup queue for email (optional): Configure `QUEUE_CONNECTION=database`
+-   Run `php artisan optimize:clear` before deployment
+-   Use CDN for static assets (images, CSS, JS)
+-   Enable caching: `php artisan config:cache route:cache`
+-   Setup queue for email (optional): Configure `QUEUE_CONNECTION=database`
 
 ## Troubleshooting
 
 **502 Bad Gateway**
-- Check error logs: `tail -f /home/app/storage/logs/laravel.log`
-- Verify PHP-FPM is running: `systemctl status php8.2-fpm`
+
+-   Check error logs: `tail -f /home/app/storage/logs/laravel.log`
+-   Verify PHP-FPM is running: `systemctl status php8.2-fpm`
 
 **Database Connection Error**
-- Verify `.env` DB credentials
-- Run migrations: `php artisan migrate --force`
+
+-   Verify `.env` DB credentials
+-   Run migrations: `php artisan migrate --force`
 
 **Storage Permission Error**
-- Fix permissions: `chmod -R 755 storage bootstrap/cache`
+
+-   Fix permissions: `chmod -R 755 storage bootstrap/cache`
 
 **Assets Not Loading**
-- Rebuild: `npm run build`
-- Clear cache: `php artisan view:clear`
+
+-   Rebuild: `npm run build`
+-   Clear cache: `php artisan view:clear`
 
 ## Support & Resources
 
-- [Laravel Documentation](https://laravel.com/docs)
-- [Laravel Forge Documentation](https://forge.laravel.com/docs)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+-   [Laravel Documentation](https://laravel.com/docs)
+-   [Laravel Forge Documentation](https://forge.laravel.com/docs)
+-   [Tailwind CSS Docs](https://tailwindcss.com/docs)
 
 ## License
 
@@ -455,7 +488,6 @@ This project is open source and available under the [MIT License](LICENSE).
 **Author**: Your Name  
 **Portfolio**: [your-domain.com](https://your-domain.com)  
 **GitHub**: [github.com/andiprasetio354/andiprasetio354](https://github.com/andiprasetio354/andiprasetio354)
-
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 

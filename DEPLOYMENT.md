@@ -4,34 +4,37 @@ Complete step-by-step deployment instructions for various hosting platforms.
 
 ## Quick Reference
 
-| Platform | Difficulty | Setup Time | Cost | Best For |
-|----------|-----------|-----------|------|----------|
-| **Shared Hosting** | Easy | 15 min | $2-5/mo | Budget-friendly |
-| **DigitalOcean Droplet** | Medium | 30 min | $5-12/mo | Full control |
-| **DigitalOcean App Platform** | Easy | 10 min | $5-20/mo | Managed, auto-scaling |
-| **Laravel Forge** | Easy | 10 min | $12+/mo | Professional, managed |
+| Platform                      | Difficulty | Setup Time | Cost     | Best For              |
+| ----------------------------- | ---------- | ---------- | -------- | --------------------- |
+| **Shared Hosting**            | Easy       | 15 min     | $2-5/mo  | Budget-friendly       |
+| **DigitalOcean Droplet**      | Medium     | 30 min     | $5-12/mo | Full control          |
+| **DigitalOcean App Platform** | Easy       | 10 min     | $5-20/mo | Managed, auto-scaling |
+| **Laravel Forge**             | Easy       | 10 min     | $12+/mo  | Professional, managed |
 
 ---
 
 ## 1. Shared Hosting (cPanel, Plesk, etc.)
 
 ### Hosting Requirements
-- ✅ PHP 8.2+ with: pdo_mysql, pdo_sqlite, curl, mbstring, xml, zip
-- ✅ Composer support
-- ✅ Git support (or FTP upload)
-- ✅ 100MB+ disk space
-- ✅ MySQL or SQLite database
+
+-   ✅ PHP 8.2+ with: pdo_mysql, pdo_sqlite, curl, mbstring, xml, zip
+-   ✅ Composer support
+-   ✅ Git support (or FTP upload)
+-   ✅ 100MB+ disk space
+-   ✅ MySQL or SQLite database
 
 ### Providers Supporting This Setup
-- Namecheap (Stellar, Elite)
-- Hostinger
-- SiteGround
-- BlueHost
-- DreamHost
+
+-   Namecheap (Stellar, Elite)
+-   Hostinger
+-   SiteGround
+-   BlueHost
+-   DreamHost
 
 ### Deployment Steps
 
 **1. Prepare Code**
+
 ```bash
 # On your local machine
 git clone https://github.com/andiprasetio354/andiprasetio354.git
@@ -42,6 +45,7 @@ git checkout portfolio-dev
 **2. Upload via Git (Recommended)**
 
 Via SSH:
+
 ```bash
 ssh username@your-domain.com
 cd public_html  # or your web root directory
@@ -56,6 +60,7 @@ Or via cPanel File Manager → Upload files manually (if Git not available)
 **3. Install Dependencies**
 
 Via SSH:
+
 ```bash
 # Install composer packages
 composer install --no-dev --optimize-autoloader
@@ -66,6 +71,7 @@ npm run build
 ```
 
 **4. Configure Environment**
+
 ```bash
 # Copy example env
 cp .env.example .env
@@ -77,6 +83,7 @@ php artisan key:generate
 **5. Edit `.env` File**
 
 Via cPanel File Manager or SSH:
+
 ```env
 APP_NAME=Portfolio
 APP_ENV=production
@@ -101,6 +108,7 @@ MAIL_FROM_ADDRESS=your-email@gmail.com
 ```
 
 **6. Setup Database**
+
 ```bash
 # Run migrations
 php artisan migrate --force
@@ -112,12 +120,14 @@ exit
 ```
 
 **7. Fix File Permissions**
+
 ```bash
 chmod -R 755 storage bootstrap/cache
 chmod -R 644 storage bootstrap/cache/*
 ```
 
 **8. Create Storage Symlink**
+
 ```bash
 php artisan storage:link
 ```
@@ -125,11 +135,13 @@ php artisan storage:link
 **9. Set Public Root**
 
 Via cPanel:
+
 1. Go to Public HTML / Document Root
 2. Set it to your `/public` folder
 3. Or create `.htaccess` redirect if needed
 
 **10. Cache Configuration**
+
 ```bash
 php artisan config:cache
 php artisan route:cache
@@ -139,28 +151,32 @@ php artisan view:cache
 **11. Verify Installation**
 
 Visit `https://your-domain.com` and test:
-- [ ] Homepage loads correctly
-- [ ] All CSS/JS assets load
-- [ ] Contact form works
-- [ ] Admin login at `/login` works
-- [ ] Project admin CRUD works
+
+-   [ ] Homepage loads correctly
+-   [ ] All CSS/JS assets load
+-   [ ] Contact form works
+-   [ ] Admin login at `/login` works
+-   [ ] Project admin CRUD works
 
 ### Troubleshooting
 
 **"Class not found" errors**
+
 ```bash
 composer dump-autoload -o
 ```
 
 **Permission denied (storage)**
+
 ```bash
 chmod -R 775 storage bootstrap/cache
 ```
 
 **Mail not sending**
-- Verify MAIL_* variables in `.env`
-- Check spam folder
-- Test with: `php artisan tinker` → `Mail::raw('test', fn($msg) => $msg->to('you@example.com'));`
+
+-   Verify MAIL\_\* variables in `.env`
+-   Check spam folder
+-   Test with: `php artisan tinker` → `Mail::raw('test', fn($msg) => $msg->to('you@example.com'));`
 
 ---
 
@@ -172,12 +188,13 @@ chmod -R 775 storage bootstrap/cache
 
 1. Go to [DigitalOcean](https://digitalocean.com) → Create → Droplet
 2. Choose:
-   - **Region**: Closest to your users
-   - **Size**: $6/mo (2GB RAM, 50GB SSD) recommended
-   - **OS**: Ubuntu 22.04 x64
+    - **Region**: Closest to your users
+    - **Size**: $6/mo (2GB RAM, 50GB SSD) recommended
+    - **OS**: Ubuntu 22.04 x64
 3. Add SSH key or use password
 4. Create Droplet
 5. SSH in:
+
 ```bash
 ssh root@your_droplet_ip
 ```
@@ -239,6 +256,7 @@ sudo nano /etc/nginx/sites-available/portfolio
 ```
 
 Paste (replace your-domain.com):
+
 ```nginx
 server {
     listen 80;
@@ -290,6 +308,7 @@ sudo certbot certonly --nginx -d your-domain.com -d www.your-domain.com
 ```
 
 Update Nginx config to use SSL (add after line 4):
+
 ```nginx
 listen 443 ssl http2;
 ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
@@ -321,6 +340,7 @@ EXIT;
 ```
 
 Update `.env`:
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=localhost
@@ -358,6 +378,7 @@ Easiest option—no server management needed.
 ### Step 1: Prepare GitHub
 
 Ensure code is pushed to GitHub:
+
 ```bash
 git push origin portfolio-dev
 ```
@@ -365,59 +386,61 @@ git push origin portfolio-dev
 ### Step 2: Create `.do/app.yaml`
 
 In your project root, create `.do/app.yaml`:
+
 ```yaml
 name: portfolio
 services:
-- name: web
-  github:
-    repo: andiprasetio354/andiprasetio354
-    branch: portfolio-dev
-  build_command: npm ci && npm run build && composer install --no-dev
-  run_command: "vendor/bin/heroku-php-apache2 public/"
-  source_dir: /
-  envs:
-  - key: APP_ENV
-    value: production
-  - key: APP_DEBUG
-    value: "false"
-  - key: APP_KEY
-    scope: RUN_AND_BUILD_TIME
-    value: ${APP_KEY}
-  http_port: 8080
+    - name: web
+      github:
+          repo: andiprasetio354/andiprasetio354
+          branch: portfolio-dev
+      build_command: npm ci && npm run build && composer install --no-dev
+      run_command: "vendor/bin/heroku-php-apache2 public/"
+      source_dir: /
+      envs:
+          - key: APP_ENV
+            value: production
+          - key: APP_DEBUG
+            value: "false"
+          - key: APP_KEY
+            scope: RUN_AND_BUILD_TIME
+            value: ${APP_KEY}
+      http_port: 8080
 databases:
-- name: db
-  engine: MYSQL
-  version: "8"
+    - name: db
+      engine: MYSQL
+      version: "8"
 envs:
-- key: DB_CONNECTION
-  value: mysql
-- key: DB_HOST
-  value: ${db.MYSQL_HOST}
-- key: DB_PORT
-  value: "3306"
-- key: DB_DATABASE
-  value: portfolio
-- key: DB_USERNAME
-  value: ${db.MYSQL_USER}
-- key: DB_PASSWORD
-  scope: RUN_AND_BUILD_TIME
-  value: ${db.MYSQL_PASSWORD}
-- key: MAIL_MAILER
-  value: smtp
-- key: MAIL_HOST
-  value: smtp.gmail.com
-- key: MAIL_PORT
-  value: "587"
-- key: MAIL_USERNAME
-  value: your-email@gmail.com
-- key: MAIL_PASSWORD
-  scope: RUN_AND_BUILD_TIME
-  value: your-app-password
-- key: MAIL_ENCRYPTION
-  value: tls
+    - key: DB_CONNECTION
+      value: mysql
+    - key: DB_HOST
+      value: ${db.MYSQL_HOST}
+    - key: DB_PORT
+      value: "3306"
+    - key: DB_DATABASE
+      value: portfolio
+    - key: DB_USERNAME
+      value: ${db.MYSQL_USER}
+    - key: DB_PASSWORD
+      scope: RUN_AND_BUILD_TIME
+      value: ${db.MYSQL_PASSWORD}
+    - key: MAIL_MAILER
+      value: smtp
+    - key: MAIL_HOST
+      value: smtp.gmail.com
+    - key: MAIL_PORT
+      value: "587"
+    - key: MAIL_USERNAME
+      value: your-email@gmail.com
+    - key: MAIL_PASSWORD
+      scope: RUN_AND_BUILD_TIME
+      value: your-app-password
+    - key: MAIL_ENCRYPTION
+      value: tls
 ```
 
 Push to GitHub:
+
 ```bash
 git add .do/app.yaml
 git commit -m "Add DigitalOcean App Platform config"
@@ -451,9 +474,9 @@ Best for professionals. Forge handles provisioning & deployment.
 2. Create account (free tier available)
 3. Connect cloud provider (DigitalOcean, AWS, Linode, etc.)
 4. Create server:
-   - Size: 1GB RAM ($5 on DO)
-   - Region: Closest to users
-   - PHP Version: 8.2
+    - Size: 1GB RAM ($5 on DO)
+    - Region: Closest to users
+    - PHP Version: 8.2
 
 ### Step 2: Create Site
 
@@ -469,6 +492,7 @@ Best for professionals. Forge handles provisioning & deployment.
 2. Select repo: `andiprasetio354/andiprasetio354`
 3. Branch: `portfolio-dev`
 4. Deployment script (Forge auto-generates):
+
 ```bash
 cd /home/forge/portfolio.com
 git pull origin portfolio-dev
@@ -487,6 +511,7 @@ php artisan view:clear
 ### Step 5: Post-Deploy
 
 Via SSH (Forge provides direct SSH button):
+
 ```bash
 php artisan storage:link
 ```
@@ -496,6 +521,7 @@ php artisan storage:link
 ## Email Configuration
 
 ### Gmail
+
 ```env
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
@@ -507,6 +533,7 @@ MAIL_FROM_ADDRESS=your-email@gmail.com
 ```
 
 To get App Password:
+
 1. Enable 2FA on Google Account
 2. Go to [Security Settings](https://myaccount.google.com/security)
 3. Select "App Passwords"
@@ -514,6 +541,7 @@ To get App Password:
 5. Copy 16-character password
 
 ### SendGrid
+
 ```env
 MAIL_MAILER=sendgrid
 MAIL_HOST=smtp.sendgrid.net
@@ -525,6 +553,7 @@ MAIL_FROM_ADDRESS=noreply@your-domain.com
 ```
 
 ### Mailgun
+
 ```env
 MAIL_MAILER=mailgun
 MAILGUN_DOMAIN=mg.your-domain.com
@@ -549,6 +578,7 @@ MAIL_FROM_ADDRESS=noreply@your-domain.com
 ## Monitoring & Maintenance
 
 ### Check Error Logs
+
 ```bash
 # Shared Hosting / Droplet
 tail -f storage/logs/laravel.log
@@ -558,6 +588,7 @@ Click "Monitor" in dashboard
 ```
 
 ### Clear Cache
+
 ```bash
 php artisan cache:clear
 php artisan config:clear
@@ -565,6 +596,7 @@ php artisan view:clear
 ```
 
 ### Database Backup
+
 ```bash
 # Shared Hosting / Droplet
 php artisan backup:run  # If using spatie/laravel-backup
@@ -574,6 +606,7 @@ mysqldump -u username -p database > backup.sql
 ```
 
 ### Monitor Disk Space
+
 ```bash
 df -h
 du -sh *
@@ -584,14 +617,17 @@ du -sh *
 ## FAQ
 
 **Q: Which platform should I choose?**
-- **Just starting?** → Shared Hosting or DigitalOcean App Platform
-- **Want full control?** → DigitalOcean Droplet
-- **Want managed, professional?** → Laravel Forge
+
+-   **Just starting?** → Shared Hosting or DigitalOcean App Platform
+-   **Want full control?** → DigitalOcean Droplet
+-   **Want managed, professional?** → Laravel Forge
 
 **Q: Can I migrate between platforms?**
-- Yes! Database is portable. Just deploy code & migrate DB.
+
+-   Yes! Database is portable. Just deploy code & migrate DB.
 
 **Q: How do I update the application after deployment?**
+
 ```bash
 git pull origin portfolio-dev
 composer install --no-dev
@@ -601,8 +637,9 @@ php artisan config:cache
 ```
 
 **Q: How do I setup automatic deployments?**
-- DigitalOcean App Platform & Forge: Built-in GitHub integration
-- Droplet/Shared Hosting: Setup GitHub webhook or manual pull
+
+-   DigitalOcean App Platform & Forge: Built-in GitHub integration
+-   Droplet/Shared Hosting: Setup GitHub webhook or manual pull
 
 ---
 

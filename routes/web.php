@@ -11,7 +11,10 @@ Route::get('/', function () {
 });
 
 Route::view('/about','about');
-Route::view('/projects','projects');
+Route::get('/projects', function () {
+    $projects = \App\Models\Project::where('featured', true)->latest()->get();
+    return view('projects', compact('projects'));
+});
 Route::view('/resume','resume');
 
 // SEO routes
