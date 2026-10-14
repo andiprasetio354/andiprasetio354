@@ -1,7 +1,7 @@
 # Hi, saya Andi Prasetio Gupuh 👋
 
 <p align="center">
-  <img src="./assets/banner.svg" alt="Banner Andi" width="100%"/>
+  <img src="[./assets/banner.svg](https://www.canva.com/design/DAHX_VoOMNo/O2QMCR5vfI892TQbYAitqQ/view)" alt="Banner Andi" width="100%"/>
 </p>
 
 <p align="center">
